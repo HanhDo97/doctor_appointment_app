@@ -23,7 +23,7 @@ class _MainLayoutState extends State<MainLayout> {
             _currentPage = value;
           });
         }),
-        children: [HomeScreen(), AppointmentScreen()],
+        children: const [HomeScreen(), AppointmentScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentPage,
@@ -37,11 +37,11 @@ class _MainLayoutState extends State<MainLayout> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.other_houses, color: Colors.black38,),
+            icon: const Icon(Icons.other_houses, color: Colors.black38,),
             label: Lang.enText['homeTLayoutText'] ?? 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month, color: Colors.black38,),
+            icon: const Icon(Icons.calendar_month, color: Colors.black38,),
             label: Lang.enText['appointmentLayoutText'] ?? 'Apointments',
           )
         ],

@@ -10,10 +10,11 @@ class Lang {
     'signUpText': 'Don\'t have an account?',
     'socialLogin': 'Or continue with social account',
     'forgot-password': 'Forgot your password?',
-    'homeLayoutText':'Home',
-    'appointmentLayoutText':'Appointments',
-    'appointmentTodayText':'Appointments today',
-    'acceptText':'Accept',
-    'rejectText':'Reject',
+    'homeLayoutText': 'Home',
+    'appointmentLayoutText': 'Appointments',
+    'appointmentTodayText': 'Appointments today',
+    'acceptText': 'Accept',
+    'rejectText': 'Reject',
+    'topDoctors': 'Top Doctors'
   };
 }
