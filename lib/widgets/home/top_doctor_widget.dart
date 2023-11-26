@@ -67,7 +67,7 @@ class TopDoctorWidget extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print('something');
+        Navigator.of(context).pushNamed('doctor_detail');
       },
     );
   }

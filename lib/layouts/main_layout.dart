@@ -11,10 +11,11 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
+  int _currentPage = 0;
+  final PageController _page = PageController();
+
   @override
   Widget build(BuildContext context) {
-    int _currentPage = 0;
-    final PageController _page = PageController();
     return Scaffold(
       body: PageView(
         controller: _page,
@@ -26,6 +27,7 @@ class _MainLayoutState extends State<MainLayout> {
         children: const [HomeScreen(), AppointmentScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
         currentIndex: _currentPage,
         onTap: (page) {
           setState(() {
@@ -37,11 +39,15 @@ class _MainLayoutState extends State<MainLayout> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(Icons.other_houses, color: Colors.black38,),
+            icon: const Icon(
+              Icons.other_houses
+            ),
             label: Lang.enText['homeTLayoutText'] ?? 'Home',
           ),
           BottomNavigationBarItem(
-            icon: const Icon(Icons.calendar_month, color: Colors.black38,),
+            icon: const Icon(
+              Icons.calendar_month,
+            ),
             label: Lang.enText['appointmentLayoutText'] ?? 'Apointments',
           )
         ],

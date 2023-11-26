@@ -1,5 +1,7 @@
 import 'package:doctor_appointment/config/const.dart';
 import 'package:doctor_appointment/layouts/main_layout.dart';
+import 'package:doctor_appointment/screens/booking_screen.dart';
+import 'package:doctor_appointment/screens/detail_screen.dart';
 import 'package:doctor_appointment/screens/home_screen.dart';
 import 'package:doctor_appointment/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,11 @@ class MyApp extends StatelessWidget {
       title: 'Doctor Appointment',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            elevation: 0,
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
+          ),
           inputDecorationTheme: const InputDecorationTheme(
             focusColor: Const.primaryColor,
             border: Const.outlinedBorder,
@@ -40,18 +47,19 @@ class MyApp extends StatelessWidget {
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              )),
-              backgroundColor: MaterialStateProperty.all(Const.primaryColor),
-              foregroundColor: MaterialStateProperty.all(Colors.white)
-            ),
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                )),
+                backgroundColor: MaterialStateProperty.all(Const.primaryColor),
+                foregroundColor: MaterialStateProperty.all(Colors.white)),
           ),
           useMaterial3: true),
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginScreen(),
         'main': (context) => const MainLayout(),
+        'doctor_detail': (context) => const DetailScreen(),
+        'booking':(context)=> const BookingScreen()
       },
     );
   }
