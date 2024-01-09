@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Lang {
   static final enText = {
     'welcome': "Welcome",

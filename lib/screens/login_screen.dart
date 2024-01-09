@@ -13,6 +13,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  var _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Const.init(context);
@@ -42,7 +44,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: TextDecoration.none),
               ),
               Const.spaceSmall,
-              const LoginFormWidget(),
+              LoginFormWidget(
+                fromKey: _formKey,
+              ),
               Const.spaceSmall,
               Center(
                 child: TextButton(
@@ -63,7 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 title: Lang.enText['signInText'] ?? "Sign In",
                 disable: false,
                 onPressed: () {
-                  Navigator.of(context).pushNamed('main');
+                  var isFormValid = _formKey.currentState!.validate();
+                  if (isFormValid) {
+                    print('Form is valid');
+                  }
+                  // Navigator.of(context).pushNamed('main');
                 },
               ),
               Const.spaceBig,

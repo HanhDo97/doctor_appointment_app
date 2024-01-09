@@ -11,8 +11,8 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
-  CalendarFormat _format = CalendarFormat.month;
-  DateTime _focusDay = DateTime.now();
+  final CalendarFormat _format = CalendarFormat.month;
+  DateTime _focusedDay = DateTime.now();
   DateTime _currentDay = DateTime.now();
   int? _currentIndex;
   bool _isWeekend = false;
@@ -33,31 +33,28 @@ class _BookingScreenState extends State<BookingScreen> {
             child: Column(
               children: [
                 TableCalendar(
-                  focusedDay: _focusDay,
+                  focusedDay: _focusedDay,
                   firstDay: DateTime.now(),
-                  lastDay: DateTime(2023, 12, 31),
+                  lastDay: DateTime(2024, 12, 31),
                   calendarFormat: _format,
                   currentDay: _currentDay,
                   rowHeight: 40,
                   calendarStyle: const CalendarStyle(
-                      todayDecoration: BoxDecoration(
-                    color: Const.primaryColor,
-                    shape: BoxShape.circle,
-                  )),
+                    outsideDaysVisible: false,
+                    todayDecoration: BoxDecoration(
+                      color: Const.primaryColor,
+                      shape: BoxShape.circle,
+                    ),
+                    weekendTextStyle: TextStyle(color: Colors.red),
+                  ),
                   availableCalendarFormats: const {
-                    CalendarFormat.month: "Month"
+                    CalendarFormat.month: 'Month',
                   },
-                  onFormatChanged: (format) {
-                    setState(() {
-                      _format = format;
-                    });
-                  },
-                  onDaySelected: (selectedDay, focusedDay) {
+                  onDaySelected: (selectedDay, focusedDay) => {
                     setState(() {
                       _currentDay = selectedDay;
-                      _focusDay = focusedDay;
+                      _focusedDay = focusedDay;
                       _dateSelected = true;
-
                       if (selectedDay.weekday == 6 ||
                           selectedDay.weekday == 7) {
                         _isWeekend = true;
@@ -66,7 +63,7 @@ class _BookingScreenState extends State<BookingScreen> {
                       } else {
                         _isWeekend = false;
                       }
-                    });
+                    })
                   },
                 )
               ],
@@ -124,7 +121,9 @@ class _BookingScreenState extends State<BookingScreen> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 80),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushNamed('booking_success');
+                },
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all(Const.primaryColor),
