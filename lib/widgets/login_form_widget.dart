@@ -3,15 +3,19 @@ import 'package:flutter/material.dart';
 
 class LoginFormWidget extends StatefulWidget {
   final GlobalKey<FormState> fromKey;
-  const LoginFormWidget({super.key, required this.fromKey});
+  final TextEditingController emailcontroller;
+  final TextEditingController passcontroller;
+  const LoginFormWidget(
+      {super.key,
+      required this.fromKey,
+      required this.emailcontroller,
+      required this.passcontroller});
 
   @override
   State<LoginFormWidget> createState() => _LoginFormWidgetState();
 }
 
 class _LoginFormWidgetState extends State<LoginFormWidget> {
-  static final _emailController = TextEditingController();
-  static final _passController = TextEditingController();
   bool _obsecurePass = true;
 
   @override
@@ -31,7 +35,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   Widget _buildEmailFormField() {
     return TextFormField(
-      controller: _emailController,
+      controller: widget.emailcontroller,
       keyboardType: TextInputType.emailAddress,
       cursorColor: Const.primaryColor,
       validator: ((value) {
@@ -58,7 +62,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
 
   Widget _buildPasswordFormField() {
     return TextFormField(
-      controller: _passController,
+      controller: widget.passcontroller,
       keyboardType: TextInputType.visiblePassword,
       obscureText: _obsecurePass,
       cursorColor: Const.primaryColor,

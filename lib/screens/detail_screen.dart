@@ -35,34 +35,40 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: Container(
         width: Const.mediaWidth,
+        height: Const.mediaHeight,
         margin: EdgeInsets.only(top: 10),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(color: Colors.white),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AboutDoctorWidget(),
-            Const.spaceMedium,
-            DoctorAchievementWidget(),
-            Const.spaceSmall,
-            DoctorIntroductionWidget(),
-            Spacer(),
-            Container(
-              width: Const.mediaWidth,
-              height: 50,
-              child: TextButton(
-                style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Const.primaryColor),
-                    shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)))),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('booking');
-                },
-                child: Text('Booking Appointment', style: TextStyle(color: Colors.white),),
-              ),
-            )
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              AboutDoctorWidget(),
+              Const.spaceMedium,
+              DoctorAchievementWidget(),
+              Const.spaceSmall,
+              DoctorIntroductionWidget(),
+              Const.spaceBig,
+              Container(
+                width: Const.mediaWidth,
+                height: 50,
+                child: TextButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Const.primaryColor),
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)))),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('booking');
+                  },
+                  child: Text(
+                    'Booking Appointment',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,13 +1,19 @@
 import 'package:doctor_appointment/config/const.dart';
+import 'package:doctor_appointment/core/notifiers/user_change_notifier.dart';
 import 'package:doctor_appointment/layouts/main_layout.dart';
 import 'package:doctor_appointment/screens/booking_screen.dart';
 import 'package:doctor_appointment/screens/booking_success_screen.dart';
 import 'package:doctor_appointment/screens/detail_screen.dart';
 import 'package:doctor_appointment/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    child: const MyApp(),
+    create: (context) => UserChangeNotifier(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +27,7 @@ class MyApp extends StatelessWidget {
       title: 'Doctor Appointment',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: AppBarTheme(
+          appBarTheme: const AppBarTheme(
             elevation: 0,
             backgroundColor: Colors.white,
             surfaceTintColor: Colors.white,
@@ -62,6 +68,7 @@ class MyApp extends StatelessWidget {
         'booking': (context) => const BookingScreen(),
         'booking_success': (context) => const BookingSuccess(),
       },
+      builder: EasyLoading.init(),
     );
   }
 }

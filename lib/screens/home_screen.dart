@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:doctor_appointment/config/const.dart';
 import 'package:doctor_appointment/config/lang.dart';
 import 'package:doctor_appointment/widgets/home/appointment_widget.dart';
@@ -42,6 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     Const.init(context);
     return Scaffold(
@@ -56,7 +64,8 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const HomeUserWidget(),
+                // ignore: prefer_const_constructors
+                HomeUserWidget(),
                 Const.spaceMedium,
                 Text(
                   Lang.enText['categoryText'] ?? 'Category',

@@ -1,7 +1,13 @@
 import 'package:doctor_appointment/config/lang.dart';
+import 'package:doctor_appointment/core/exceptions/unauthenticated_exception.dart';
+import 'package:doctor_appointment/core/notifiers/user_change_notifier.dart';
+import 'package:doctor_appointment/core/widgets/messages/dialog_show_error.dart';
 import 'package:doctor_appointment/screens/appointment_screen.dart';
 import 'package:doctor_appointment/screens/home_screen.dart';
+import 'package:doctor_appointment/services/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
@@ -11,8 +17,19 @@ class MainLayout extends StatefulWidget {
 }
 
 class _MainLayoutState extends State<MainLayout> {
+  dynamic _userData;
   int _currentPage = 0;
   final PageController _page = PageController();
+  final UserService userService = UserService();
+  bool isTokenValid = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // get user info
+    getUserInformation(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +41,8 @@ class _MainLayoutState extends State<MainLayout> {
             _currentPage = value;
           });
         }),
-        children: const [HomeScreen(), AppointmentScreen()],
+        // ignore: prefer_const_constructors, prefer_const_literals_to_create_immutables
+        children: [HomeScreen(), const AppointmentScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
@@ -39,9 +57,7 @@ class _MainLayoutState extends State<MainLayout> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.other_houses
-            ),
+            icon: const Icon(Icons.other_houses),
             label: Lang.enText['homeTLayoutText'] ?? 'Home',
           ),
           BottomNavigationBarItem(
@@ -53,5 +69,20 @@ class _MainLayoutState extends State<MainLayout> {
         ],
       ),
     );
+  }
+
+  Future getUserInformation(context) async {
+    final userModel = Provider.of<UserChangeNotifier>(context, listen: false);
+
+    try {
+      await userService.getUserInformation().then((response) {
+        setState(() {
+          userModel.setUser(response.data['user']);
+        });
+      });
+    } on UnauthenticatedException catch (e) {
+      Navigator.of(context).pushNamed('/');
+      DialogShowError.show(context, e.toString());
+    }
   }
 }

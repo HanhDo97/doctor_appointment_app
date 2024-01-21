@@ -1,5 +1,6 @@
 import 'package:doctor_appointment/config/const.dart';
 import 'package:doctor_appointment/config/lang.dart';
+import 'package:doctor_appointment/services/login_service.dart';
 import 'package:doctor_appointment/widgets/button_widget.dart';
 import 'package:doctor_appointment/widgets/login_form_widget.dart';
 import 'package:doctor_appointment/widgets/social_button_widget.dart';
@@ -13,7 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final _emailcontroller = TextEditingController();
+  final _passcontroller = TextEditingController();
+  final _loginService = LoginService();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Const.spaceSmall,
               LoginFormWidget(
                 fromKey: _formKey,
+                emailcontroller: _emailcontroller,
+                passcontroller: _passcontroller,
               ),
               Const.spaceSmall,
               Center(
@@ -69,7 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   var isFormValid = _formKey.currentState!.validate();
                   if (isFormValid) {
-                    print('Form is valid');
+                    _loginService.login(
+                        _emailcontroller.text, _passcontroller.text, context);
                   }
                   // Navigator.of(context).pushNamed('main');
                 },
@@ -85,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: TextDecoration.none),
                 ),
               ),
-              Center(
+              const Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -111,9 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: Colors.black38,
                           decoration: TextDecoration.none),
                     ),
-                    Text(
+                    const Text(
                       "Sign up",
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
