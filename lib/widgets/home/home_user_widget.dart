@@ -1,9 +1,10 @@
 import 'package:doctor_appointment/core/notifiers/user_change_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class HomeUserWidget extends StatefulWidget {
-  const HomeUserWidget({super.key});
+  const HomeUserWidget({Key? key}) : super(key: key);
 
   @override
   State<HomeUserWidget> createState() => _HomeUserWidgetState();
@@ -11,11 +12,25 @@ class HomeUserWidget extends StatefulWidget {
 
 class _HomeUserWidgetState extends State<HomeUserWidget> {
   late UserChangeNotifier userModel;
+  late String imageUrl;
 
   @override
   void initState() {
     super.initState();
     userModel = Provider.of<UserChangeNotifier>(context, listen: false);
+    _loadImage();
+  }
+
+  Future<void> _loadImage() async {
+    imageUrl = "http://localhost:8080/images/NoneImage.jfif";
+    if (userModel.user.image != null) {
+      final response = await http.head(Uri.parse(userModel.user.image!));
+      if (response.statusCode != 404) {
+        setState(() {
+          imageUrl = userModel.user.image!;
+        });
+      }
+    }
   }
 
   @override
@@ -28,10 +43,11 @@ class _HomeUserWidgetState extends State<HomeUserWidget> {
           style: const TextStyle(
               color: Colors.black, fontSize: 25, fontWeight: FontWeight.w500),
         ),
-        const SizedBox(
+        SizedBox(
           child: CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage('assets/images/profile1.jpg'),
+            backgroundImage: NetworkImage(imageUrl),
+            backgroundColor: Colors.transparent,
           ),
         )
       ],

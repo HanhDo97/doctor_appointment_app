@@ -50,7 +50,12 @@ class LoginService {
   }
 
   _handleError(response, context) {
-    var responseDecoded = ErrorResponse.fromJson(jsonDecode(response.body));
-    DialogShowError.show(context, responseDecoded.message);
+    if (response.body
+        .contains("The remote computer refused the network connection")) {
+      DialogShowError.show(context, 'Connecting to server error');
+    } else {
+      var responseDecoded = ErrorResponse.fromJson(jsonDecode(response.body));
+      DialogShowError.show(context, responseDecoded.message);
+    }
   }
 }

@@ -23,14 +23,19 @@ class HttpService {
 
   Future<http.Response> post(String endPoint, dynamic data) async {
     debugPrint(HttpConfig.baseUrl + endPoint);
-    var response = await http.post(
-      Uri.parse(HttpConfig.baseUrl + endPoint),
-      headers: {
-        'Content-Type': 'application/json; charset=UTF-8',
-        'Accept': 'application/json',
-      },
-      body: jsonEncode(data),
-    );
+    late http.Response response;
+    try {
+      response = await http.post(
+        Uri.parse(HttpConfig.baseUrl + endPoint),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(data),
+      );
+    } catch (e) {
+      return http.Response(e.toString(), 500); // Return a default response
+    }
 
     return response;
   }

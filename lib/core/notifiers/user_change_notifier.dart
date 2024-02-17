@@ -6,11 +6,10 @@ class UserChangeNotifier extends ChangeNotifier {
   User get user => _user;
 
   void setUser(Map<String, dynamic> user) {
-    print('line 9:');
-    print(user['name']);
     _user = User(
       name: user['name'],
       email: user['email'],
+      image: user['image'],
     );
     notifyListeners();
   }
@@ -19,6 +18,7 @@ class UserChangeNotifier extends ChangeNotifier {
 class User {
   final String? name;
   final String? email;
+  final String? image;
 
-  User({this.name, this.email});
+  User({this.name, this.email, this.image});
 }

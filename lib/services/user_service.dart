@@ -10,6 +10,7 @@ class UserService {
   Future<dynamic> getUserInformation() async {
     return await httpService.get('/user/me').then((response) {
       if (response.statusCode == 200) {
+        print(response.body);
         return SuccessResponse.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         throw UnauthenticatedException('Hết phiên đăng nhập !!!');
