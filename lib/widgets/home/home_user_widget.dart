@@ -21,8 +21,19 @@ class _HomeUserWidgetState extends State<HomeUserWidget> {
     _loadImage();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Listen to changes in userModel.user and update the image URL accordingly
+    userModel = Provider.of<UserChangeNotifier>(context);
+    _loadImage();
+  }
+
   Future<void> _loadImage() async {
     imageUrl = "http://localhost:8080/images/NoneImage.jfif";
+    print('26');
+    print(userModel.user);
+    print(userModel.user.image);
     if (userModel.user.image != null) {
       final response = await http.head(Uri.parse(userModel.user.image!));
       if (response.statusCode != 404) {
