@@ -16,33 +16,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Map<String, dynamic>> medCat = [
-    {
-      "icon": const AssetImage('assets/icons/medical.png'),
-      "category": "General",
-    },
-    {
-      "icon": const AssetImage('assets/icons/heart-attack.png'),
-      "category": "Cardiology",
-    },
-    {
-      "icon": const AssetImage('assets/icons/lungs.png'),
-      "category": "Respirations",
-    },
-    {
-      "icon": const AssetImage('assets/icons/hand.png'),
-      "category": "Dermatology",
-    },
-    {
-      "icon": const AssetImage('assets/icons/pregnant.png'),
-      "category": "Gynecology",
-    },
-    {
-      "icon": const AssetImage('assets/icons/tooth.png'),
-      "category": "Dental",
-    },
-  ];
-
   @override
   void initState() {
     // TODO: implement initState
@@ -73,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 16, fontWeight: FontWeight.w500),
                 ),
                 Const.spaceSmall,
-                HomeCategoryWidget(medCat: medCat),
+                const HomeCategoryWidget(),
                 Const.spaceSmall,
                 Text(
                   Lang.enText['appointmentTodayText'] ?? 'Appointments today',

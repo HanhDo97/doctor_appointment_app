@@ -7,7 +7,6 @@ import 'package:doctor_appointment/screens/home_screen.dart';
 import 'package:doctor_appointment/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({super.key});
