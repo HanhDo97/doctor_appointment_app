@@ -1,3 +1,4 @@
+import 'package:doctor_appointment/config/http_config.dart';
 import 'package:doctor_appointment/core/notifiers/user_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -24,16 +25,14 @@ class _HomeUserWidgetState extends State<HomeUserWidget> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // Listen to changes in userModel.user and update the image URL accordingly
+    // Listen to changes in userModel.user
     userModel = Provider.of<UserChangeNotifier>(context);
     _loadImage();
   }
 
   Future<void> _loadImage() async {
-    imageUrl = "http://localhost:8080/images/NoneImage.jfif";
-    print('26');
-    print(userModel.user);
-    print(userModel.user.image);
+    imageUrl = '${HttpConfig.serverUrl}/images/NoneImage.jfif';
+
     if (userModel.user.image != null) {
       final response = await http.head(Uri.parse(userModel.user.image!));
       if (response.statusCode != 404) {

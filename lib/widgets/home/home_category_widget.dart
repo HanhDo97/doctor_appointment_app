@@ -1,7 +1,7 @@
 import 'package:doctor_appointment/config/const.dart';
 import 'package:flutter/material.dart';
 
-class HomeCategoryWidget extends StatelessWidget {
+class HomeCategoryWidget extends StatefulWidget {
   const HomeCategoryWidget({
     super.key,
     required this.medCat,
@@ -10,13 +10,24 @@ class HomeCategoryWidget extends StatelessWidget {
   final List<Map<String, dynamic>> medCat;
 
   @override
+  State<HomeCategoryWidget> createState() => _HomeCategoryWidgetState();
+}
+
+class _HomeCategoryWidgetState extends State<HomeCategoryWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: Const.screenHeight * 0.07,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          ...List.generate(medCat.length, (index) {
+          ...List.generate(widget.medCat.length, (index) {
             return Card(
               margin: const EdgeInsets.only(right: 20),
               color: Const.primaryColor,
@@ -33,14 +44,14 @@ class HomeCategoryWidget extends StatelessWidget {
                   children: [
                     // Icon(medCat[index]['icon'])
                     Image(
-                      image: medCat[index]['icon'],
+                      image: widget.medCat[index]['icon'],
                       width: 20,
                       height: 20,
                       color: Colors.white,
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      medCat[index]['category'],
+                      widget.medCat[index]['category'],
                       style: TextStyle(color: Colors.white),
                     )
                   ],

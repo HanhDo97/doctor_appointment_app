@@ -10,7 +10,7 @@ class HttpService {
     final token = prefs.getString('token') ?? '';
 
     var response = await http.get(
-      Uri.parse(HttpConfig.baseUrl + endPoint),
+      Uri.parse(HttpConfig.apiUrl + endPoint),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
         'Accept': 'application/json',
@@ -22,11 +22,11 @@ class HttpService {
   }
 
   Future<http.Response> post(String endPoint, dynamic data) async {
-    debugPrint(HttpConfig.baseUrl + endPoint);
+    debugPrint(HttpConfig.apiUrl + endPoint);
     late http.Response response;
     try {
       response = await http.post(
-        Uri.parse(HttpConfig.baseUrl + endPoint),
+        Uri.parse(HttpConfig.apiUrl + endPoint),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
           'Accept': 'application/json',
