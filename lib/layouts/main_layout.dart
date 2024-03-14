@@ -2,6 +2,7 @@ import 'package:doctor_appointment/config/lang.dart';
 import 'package:doctor_appointment/core/exceptions/unauthenticated_exception.dart';
 import 'package:doctor_appointment/core/notifiers/user_change_notifier.dart';
 import 'package:doctor_appointment/core/widgets/messages/dialog_show_error.dart';
+import 'package:doctor_appointment/screens/account_screen.dart';
 import 'package:doctor_appointment/screens/appointment_screen.dart';
 import 'package:doctor_appointment/screens/home_screen.dart';
 import 'package:doctor_appointment/services/user_service.dart';
@@ -41,7 +42,11 @@ class _MainLayoutState extends State<MainLayout> {
           });
         }),
         // ignore: prefer_const_constructors, prefer_const_literals_to_create_immutables
-        children: [HomeScreen(), const AppointmentScreen()],
+        children: [
+          HomeScreen(),
+          const AppointmentScreen(),
+          const AccountScreen()
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
@@ -64,7 +69,13 @@ class _MainLayoutState extends State<MainLayout> {
               Icons.calendar_month,
             ),
             label: Lang.enText['appointmentLayoutText'] ?? 'Apointments',
-          )
+          ),
+          BottomNavigationBarItem(
+            icon: const Icon(
+              Icons.manage_accounts,
+            ),
+            label: Lang.enText['accountLayoutText'] ?? 'Account',
+          ),
         ],
       ),
     );

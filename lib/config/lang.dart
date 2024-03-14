@@ -9,10 +9,11 @@ class Lang {
     'socialLogin': 'Or continue with social account',
     'forgot-password': 'Forgot your password?',
     'homeLayoutText': 'Home',
+    'accountLayoutText': 'Account',
     'appointmentLayoutText': 'Appointments',
     'appointmentTodayText': 'Appointments today',
     'acceptText': 'Accept',
     'rejectText': 'Reject',
-    'topDoctors': 'Top Doctors'
+    'topDoctors': 'Top Doctors',
   };
 }

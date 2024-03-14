@@ -1,3 +1,4 @@
+import 'package:doctor_appointment/config/http_config.dart';
 import 'package:flutter/material.dart';
 
 class UserChangeNotifier extends ChangeNotifier {
@@ -11,6 +12,14 @@ class UserChangeNotifier extends ChangeNotifier {
       email: user['email'],
       image: user['image'],
     );
+    notifyListeners();
+  }
+
+  void reset() {
+    _user = User(
+        name: '',
+        email: '',
+        image: HttpConfig.serverUrl + 'images/NoneImage.jfif');
     notifyListeners();
   }
 }
