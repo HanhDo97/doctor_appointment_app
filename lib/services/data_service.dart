@@ -10,7 +10,6 @@ class DataService {
   Future<dynamic> getCategories() async {
     return await httpService.get('/list_type/categories').then((response) {
       if (response.statusCode == 200) {
-        print(jsonDecode(response.body));
         return SuccessResponse.fromJson(jsonDecode(response.body));
       } else if (response.statusCode == 401) {
         throw UnauthenticatedException('Hết phiên đăng nhập !!!');

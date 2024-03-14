@@ -84,33 +84,35 @@ class _BookingScreenState extends State<BookingScreen> {
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 4),
                           itemBuilder: (context, index) {
-                            return InkWell(
-                              splashColor: Colors.transparent,
-                              onTap: () {
-                                setState(() {
-                                  _currentIndex = index;
-                                  _timeSelected = true;
-                                });
-                              },
-                              child: Container(
-                                margin: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _currentIndex = index;
+                                    _timeSelected = true;
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(15),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: _currentIndex == index
+                                              ? Colors.white
+                                              : Colors.black),
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _currentIndex == index
+                                          ? Const.primaryColor
+                                          : null),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    '${index + 9}:00 ${index + 9 > 11 ? "PM" : "AM"}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
                                         color: _currentIndex == index
                                             ? Colors.white
-                                            : Colors.black),
-                                    borderRadius: BorderRadius.circular(15),
-                                    color: _currentIndex == index
-                                        ? Const.primaryColor
-                                        : null),
-                                alignment: Alignment.center,
-                                child: Text(
-                                  '${index + 9}:00 ${index + 9 > 11 ? "PM" : "AM"}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: _currentIndex == index
-                                          ? Colors.white
-                                          : null),
+                                            : null),
+                                  ),
                                 ),
                               ),
                             );

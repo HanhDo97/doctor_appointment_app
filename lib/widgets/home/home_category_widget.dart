@@ -14,7 +14,7 @@ class HomeCategoryWidget extends StatefulWidget {
 class _HomeCategoryWidgetState extends State<HomeCategoryWidget> {
   final DataService dataService = DataService();
 
-  List<Map<String, dynamic>> categories = [];
+  List<dynamic> categories = [];
 
   @override
   void initState() {
@@ -30,7 +30,6 @@ class _HomeCategoryWidgetState extends State<HomeCategoryWidget> {
       await dataService.getCategories().then((response) {
         setState(() {
           categories = response.data;
-          print(categories);
         });
       });
     } catch (e) {
