@@ -1,12 +1,8 @@
-import 'dart:ui';
-
 import 'package:doctor_appointment/config/const.dart';
 import 'package:doctor_appointment/widgets/detail/about_doctor_widget.dart';
 import 'package:doctor_appointment/widgets/detail/detail_app_bar.dart';
 import 'package:doctor_appointment/widgets/detail/doctor_achievement_widget.dart';
 import 'package:doctor_appointment/widgets/detail/doctor_instroduction_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:doctor_appointment/config/const.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -21,6 +17,10 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // Extract the arguments passed from the previous screen
+    final arguments = ModalRoute.of(context)?.settings.arguments;
+    final doctor = Doctor.fromMap(arguments as Map<String, dynamic>);
+
     return Scaffold(
       appBar: DetailAppBar(
         isFav: isFav,
@@ -43,7 +43,11 @@ class _DetailScreenState extends State<DetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              AboutDoctorWidget(),
+              AboutDoctorWidget(
+                doctorAbout: doctor.about,
+                doctorImage: doctor.image,
+                doctorName: doctor.name,
+              ),
               Const.spaceMedium,
               DoctorAchievementWidget(),
               Const.spaceSmall,
@@ -71,6 +75,38 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class Doctor {
+  String? name;
+  String? cate_code;
+  String? user_id;
+  String? image;
+  String? cate_name;
+  String? about;
+  dynamic user;
+
+  Doctor({
+    this.name,
+    this.cate_code,
+    this.user_id,
+    this.image,
+    this.cate_name,
+    this.about,
+    this.user,
+  });
+
+  factory Doctor.fromMap(Map<String, dynamic> map) {
+    return Doctor(
+      name: map['name'],
+      cate_code: map['cate_code'],
+      user_id: map['user_id'],
+      image: map['image'],
+      cate_name: map['cate_name'],
+      about: map['about'],
+      user: map['user'],
     );
   }
 }

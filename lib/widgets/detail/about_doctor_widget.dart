@@ -1,28 +1,43 @@
 import 'package:doctor_appointment/config/const.dart';
+import 'package:doctor_appointment/config/http_config.dart';
 import 'package:flutter/material.dart';
 
+class AboutDoctorWidget extends StatefulWidget {
+  final String? doctorName;
+  final String? doctorAbout;
+  final String? doctorImage;
 
-class AboutDoctorWidget extends StatelessWidget {
-  const AboutDoctorWidget({super.key});
+  const AboutDoctorWidget(
+      {super.key,
+      required this.doctorName,
+      required this.doctorAbout,
+      required this.doctorImage});
 
   @override
+  State<AboutDoctorWidget> createState() => _AboutDoctorWidgetState();
+}
+
+class _AboutDoctorWidgetState extends State<AboutDoctorWidget> {
+  @override
   Widget build(BuildContext context) {
+    final image =
+        widget.doctorImage ?? '${HttpConfig.serverUrl}/images/NoneImage.jfif';
     return Column(
       children: [
         CircleAvatar(
           radius: 65,
-          backgroundImage: AssetImage('assets/images/doctor_2.jpg'),
+          backgroundImage: NetworkImage(image),
         ),
         Const.spaceMedium,
         Text(
-          'Doctor Name One',
+          widget.doctorName ?? '',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
         Const.spaceSmall,
         SizedBox(
           width: (Const.mediaWidth?.toDouble() ?? double.infinity) * 0.75,
           child: Text(
-            'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
+            widget.doctorAbout ?? '',
             softWrap: true,
             textAlign: TextAlign.center,
           ),

@@ -17,4 +17,15 @@ class DataService {
       throw Exception('Failed to load user information');
     });
   }
+
+  Future<dynamic> getTopDoctors() async {
+    return await httpService.get('/doctors/ranked').then((response) {
+      if (response.statusCode == 200) {
+        return SuccessResponse.fromJson(jsonDecode(response.body));
+      } else if (response.statusCode == 401) {
+        throw UnauthenticatedException('Hết phiên đăng nhập !!!');
+      }
+      throw Exception('Failed to load user information');
+    });
+  }
 }

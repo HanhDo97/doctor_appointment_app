@@ -14,7 +14,8 @@ class UserService {
       } else if (response.statusCode == 401) {
         throw UnauthenticatedException('Hết phiên đăng nhập !!!');
       }
-      throw Exception('Failed to load user information');
+      throw UnauthenticatedException(
+          'Server returns code ${response.statusCode}');
     });
   }
 }

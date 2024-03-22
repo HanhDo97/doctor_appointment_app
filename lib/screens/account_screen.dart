@@ -28,7 +28,7 @@ class AccountScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5))),
                       alignment: Alignment.centerLeft),
                   child: Text(
-                    'Thông tin chung',
+                    'General Information',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -54,7 +54,7 @@ class AccountScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5))),
                       alignment: Alignment.centerLeft),
                   child: Text(
-                    'Đăng xuất',
+                    'Sign out',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),

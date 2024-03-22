@@ -1,4 +1,6 @@
 import 'package:doctor_appointment/config/const.dart';
+import 'package:doctor_appointment/core/exceptions/unauthenticated_exception.dart';
+import 'package:doctor_appointment/core/widgets/messages/dialog_show_error.dart';
 import 'package:doctor_appointment/services/data_service.dart';
 import 'package:flutter/material.dart';
 
@@ -22,19 +24,17 @@ class _HomeCategoryWidgetState extends State<HomeCategoryWidget> {
     super.initState();
 
     // get Categories list
-    getCategories();
+    getCategories(context);
   }
 
-  Future getCategories() async {
+  Future<void> getCategories(BuildContext context) async {
     try {
-      await dataService.getCategories().then((response) {
-        setState(() {
-          categories = response.data;
-        });
+      final response = await dataService.getCategories();
+      setState(() {
+        categories = response.data;
       });
     } catch (e) {
-      print('something error');
-      print(e);
+      print('Get categories error: ' + e.toString());
     }
   }
 
