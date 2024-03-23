@@ -44,33 +44,45 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Const.init(context);
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-        child: ListView(
-          children: [
-            HomeUserWidget(),
-            Const.spaceMedium,
-            Text(
-              Lang.enText['categoryText'] ?? 'Category',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+      body: SingleChildScrollView(
+        child: Container(
+          height: Const.mediaHeight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+            child: Column(
+              children: [
+                const HomeUserWidget(),
+                Const.spaceMedium,
+                Text(
+                  Lang.enText['categoryText'] ?? 'Category',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                Const.spaceSmall,
+                const HomeCategoryWidget(),
+                Const.spaceSmall,
+                Text(
+                  Lang.enText['topDoctors'] ?? 'Top Doctors',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                Const.spaceSmall,
+                const Expanded(
+                  child: TopDoctorWidget(),
+                ),
+                Const.spaceSmall,
+                Text(
+                  Lang.enText['appointmentTodayText'] ?? 'Appointments today',
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w500),
+                ),
+                Const.spaceSmall,
+                const Expanded(
+                  child: AppointmentWidget(),
+                )
+              ],
             ),
-            Const.spaceSmall,
-            HomeCategoryWidget(),
-            Const.spaceSmall,
-            Text(
-              Lang.enText['topDoctors'] ?? 'Top Doctors',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            Const.spaceSmall,
-            TopDoctorWidget(),
-            Const.spaceSmall,
-            Text(
-              Lang.enText['appointmentTodayText'] ?? 'Appointments today',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-            ),
-            Const.spaceSmall,
-            AppointmentWidget(),
-          ],
+          ),
         ),
       ),
     );

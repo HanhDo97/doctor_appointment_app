@@ -23,7 +23,7 @@ class HomeDoctorWidget extends StatelessWidget {
           children: [
             Text(
               "Name Of Doctor1",
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             Text("Dental"),
           ],

@@ -39,7 +39,6 @@ class _TopDoctorWidgetState extends State<TopDoctorWidget> {
   Widget build(BuildContext context) {
     Const.init(context);
     return SizedBox(
-      height: 300, // Set a fixed height or adjust as necessary
       child: topDoctors.isNotEmpty
           ? ListView.builder(
               itemCount: topDoctors.length,
