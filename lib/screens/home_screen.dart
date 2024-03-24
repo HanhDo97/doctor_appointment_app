@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:convert';
 
 import 'package:doctor_appointment/config/const.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final LoginService loginService = LoginService();
+  int totalNumber = 0;
 
   @override
   void initState() {
@@ -53,32 +56,69 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const HomeUserWidget(),
                 Const.spaceMedium,
-                Text(
-                  Lang.enText['categoryText'] ?? 'Category',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    Text(
+                      Lang.enText['categoryText'] ?? 'Category',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                  ],
                 ),
                 Const.spaceSmall,
                 const HomeCategoryWidget(),
                 Const.spaceSmall,
-                Text(
-                  Lang.enText['topDoctors'] ?? 'Top Doctors',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w500),
+                Row(
+                  children: [
+                    Text(
+                      Lang.enText['appointmentTodayText'] ??
+                          'Appointments today',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                    Const.spaceWidthSmall,
+                    Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Const.primaryColor,
+                      ),
+                      child: Center(
+                        child: Text(
+                          totalNumber.toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Const.spaceSmall,
-                const Expanded(
+                Expanded(
+                  child: AppointmentWidget(
+                    getTotalAppointments: (int value) {
+                      setState(() {
+                        totalNumber = value;
+                      });
+                    },
+                  ),
+                ),
+                Const.spaceSmall,
+                Row(
+                  children: [
+                    Text(
+                      Lang.enText['topDoctors'] ?? 'Top Doctors',
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                Const.spaceSmall,
+                Expanded(
                   child: TopDoctorWidget(),
-                ),
-                Const.spaceSmall,
-                Text(
-                  Lang.enText['appointmentTodayText'] ?? 'Appointments today',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-                Const.spaceSmall,
-                const Expanded(
-                  child: AppointmentWidget(),
                 )
               ],
             ),

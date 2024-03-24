@@ -80,6 +80,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                               backgroundImage:
                                   AssetImage(_schedule['doctor_profile']),
                             ),
+                            Const.spaceWidthSmall,
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -158,7 +159,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 borderRadius: BorderRadius.circular(10)),
             child: Center(
               child: Text(
-                status.name,
+                capitalize(status.name),
                 style: TextStyle(color: Colors.white),
               ),
             ),

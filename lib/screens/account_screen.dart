@@ -19,28 +19,6 @@ class AccountScreen extends StatelessWidget {
                 width: Const.mediaWidth,
                 child: TextButton(
                   onPressed: () {
-                    Navigator.of(context).pushNamed('booking_success');
-                  },
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Const.primaryColor),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5))),
-                      alignment: Alignment.centerLeft),
-                  child: Text(
-                    'General Information',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 50,
-                width: Const.mediaWidth,
-                child: TextButton(
-                  onPressed: () {
                     final userModel =
                         Provider.of<UserChangeNotifier>(context, listen: false);
                     userModel.reset();

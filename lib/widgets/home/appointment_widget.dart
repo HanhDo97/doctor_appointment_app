@@ -5,8 +5,11 @@ import 'package:doctor_appointment/widgets/home/home_doctor_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentWidget extends StatefulWidget {
+  final ValueChanged<int> getTotalAppointments;
+
   const AppointmentWidget({
     super.key,
+    required this.getTotalAppointments,
   });
 
   @override
@@ -31,6 +34,7 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
       final response = await dataService.getTodayAppointments();
       setState(() {
         appointments = response.data;
+        widget.getTotalAppointments(appointments.length);
       });
     } catch (e) {
       print('Get appointments error: ' + e.toString());
@@ -47,22 +51,33 @@ class _AppointmentWidgetState extends State<AppointmentWidget> {
       ),
       child: Material(
         color: Colors.transparent,
-        child: ListView.builder(
-          itemCount: appointments.length,
-          itemBuilder: (context, index) {
-            final appointment = appointments[index];
-            return Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  HomeDoctorWidget(),
-                  Const.spaceSmall,
-                  ActionAppointmentWidget()
-                ],
+        child: appointments.isEmpty
+            ? const Center(
+                child: Text('There is no any appointments today'),
+              )
+            : ListView.builder(
+                itemCount: appointments.length,
+                itemBuilder: (context, index) {
+                  final appointment = appointments[index];
+                  return Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Column(
+                      children: [
+                        HomeDoctorWidget(
+                          doctorName: appointment['doctorName'],
+                          doctorImage: appointment['doctorImage'],
+                          doctorCateName: appointment['doctorCateName'],
+                        ),
+                        Const.spaceSmall,
+                        ActionAppointmentWidget(
+                          timeMeet: appointment['timeMeet'],
+                          dateMeet: appointment['dateMeet'],
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
       ),
     );
   }

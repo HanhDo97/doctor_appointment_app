@@ -23,6 +23,10 @@ class Const {
   static final spaceMedium = SizedBox(height: mediaHeight! * 0.04);
   static final spaceBig = SizedBox(height: mediaHeight! * 0.08);
 
+  static const spaceWidthSmall = SizedBox(width: 15);
+  static final spaceWidthMedium = SizedBox(width: mediaWidth! * 0.04);
+  static final spaceWidthBig = SizedBox(width: mediaWidth! * 0.08);
+
   static const outlinedBorder = OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(8)),
     borderSide: BorderSide(color: Colors.black38),

@@ -3,7 +3,10 @@ import 'package:doctor_appointment/config/lang.dart';
 import 'package:flutter/material.dart';
 
 class ActionAppointmentWidget extends StatelessWidget {
-  const ActionAppointmentWidget({super.key});
+  final String dateMeet;
+  final String timeMeet;
+  const ActionAppointmentWidget(
+      {super.key, required this.dateMeet, required this.timeMeet});
 
   @override
   Widget build(BuildContext context) {
@@ -17,31 +20,31 @@ class ActionAppointmentWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            const Row(
+            Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.calendar_today,
                   color: Colors.white,
                   size: 16,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
-                  'Today, 13/11/2023',
-                  style: TextStyle(color: Colors.white, fontSize: 13),
+                  'Today, ' + dateMeet,
+                  style: const TextStyle(color: Colors.white, fontSize: 13),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
-                Icon(
+                const Icon(
                   Icons.access_alarm,
                   color: Colors.white,
                   size: 16,
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 Text(
-                  '02:00 PM',
-                  style: TextStyle(fontSize: 13, color: Colors.white),
+                  timeMeet,
+                  style: const TextStyle(fontSize: 13, color: Colors.white),
                 )
               ],
             ),
