@@ -39,6 +39,11 @@ class LoginService {
     var responseDecoded =
         TokenSuccessResponse.fromJson(jsonDecode(response.body));
 
+    if (responseDecoded.token == '') {
+      DialogShowError.show(context, responseDecoded.message);
+      return;
+    }
+
     // set token
     final prefs = SharedPreferences.getInstance();
     prefs.then((value) {

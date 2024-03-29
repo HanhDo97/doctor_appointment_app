@@ -10,21 +10,21 @@ class SocialButtonWidget extends StatelessWidget {
     return OutlinedButton(
       onPressed: () {},
       style: OutlinedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        padding: EdgeInsets.symmetric(vertical: 5)
-      ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          padding: EdgeInsets.symmetric(vertical: 5)),
       child: SizedBox(
         width: Const.screenWidth * 0.4,
         height: 50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Image.asset(
-              'assets/images/$title.png',
+            Image(
+              image: AssetImage('assets/images/$title.png'),
               width: 40,
               height: 40,
+              fit: BoxFit.cover,
             ),
             Text(
               '$title'.toUpperCase(),
