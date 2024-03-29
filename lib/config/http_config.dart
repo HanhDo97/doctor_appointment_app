@@ -1,5 +1,5 @@
 class HttpConfig {
-  static const String apiUrl = "http://localhost:8080/api";
-  static const String serverUrl = "http://localhost:8080/";
+  static const String apiUrl = "http://207.148.102.135/api";
+  static const String serverUrl = "http://207.148.102.135/";
   static const int timeout = 5000;
 }

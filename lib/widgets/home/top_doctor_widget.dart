@@ -56,7 +56,7 @@ class _TopDoctorWidgetState extends State<TopDoctorWidget> {
                           SizedBox(
                             width: Const.screenWidth * 0.33,
                             child: Image.network(
-                              doctor['image'],
+                              doctor['doctorImage'],
                             ),
                           ),
                           Flexible(
@@ -64,14 +64,14 @@ class _TopDoctorWidgetState extends State<TopDoctorWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  doctor['name'],
+                                  doctor['doctorName'],
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
                                 Text(
-                                  doctor['cate_name'],
+                                  doctor['doctorCateName'],
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w100,
