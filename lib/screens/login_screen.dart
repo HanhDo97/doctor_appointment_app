@@ -3,7 +3,6 @@ import 'package:doctor_appointment/config/lang.dart';
 import 'package:doctor_appointment/services/login_service.dart';
 import 'package:doctor_appointment/widgets/button_widget.dart';
 import 'package:doctor_appointment/widgets/login_form_widget.dart';
-import 'package:doctor_appointment/widgets/social_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -92,16 +91,64 @@ class _LoginScreenState extends State<LoginScreen> {
                       decoration: TextDecoration.none),
                 ),
               ),
-              const Center(
+              Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    SocialButtonWidget(
-                      title: 'google',
+                    OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 5)),
+                      child: SizedBox(
+                        width: Const.screenWidth * 0.4,
+                        height: 50,
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage('assets/images/google.png'),
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              'Google',
+                              style: TextStyle(color: Colors.black38),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    SocialButtonWidget(
-                      title: 'facebook',
-                    )
+                    OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 5)),
+                      child: SizedBox(
+                        width: Const.screenWidth * 0.4,
+                        height: 50,
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage('assets/images/facebook.png'),
+                              width: 40,
+                              height: 40,
+                              fit: BoxFit.cover,
+                            ),
+                            Text(
+                              'Facebook',
+                              style: TextStyle(color: Colors.black38),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
